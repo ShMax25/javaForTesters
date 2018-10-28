@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="175.0">ru.stqa.pft.addressbook.appmanager.AplicationManager</node>
+    <node x="0.0" y="337.0">ru.stqa.pft.addressbook.appmanager.SessionHelper</node>
+    <node x="199.0" y="337.0">ru.stqa.pft.addressbook.appmanager.NavigationHelper</node>
+    <node x="327.0" y="175.0">ru.stqa.pft.addressbook.model.GroupData</node>
+    <node x="82.25" y="0.0">ru.stqa.pft.addressbook.Tests.TestBase</node>
+    <node x="0.0" y="433.0">ru.stqa.pft.addressbook.appmanager.GroupHelper</node>
+    <node x="0.0" y="101.0">ru.stqa.pft.addressbook.Tests.GroupDeleteionTests</node>
+    <node x="198.0" y="101.0">ru.stqa.pft.addressbook.Tests.GroupCreationTests</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.stqa.pft.addressbook.Tests.GroupDeleteionTests" target="ru.stqa.pft.addressbook.Tests.TestBase">
+      <point x="0.0" y="-14.5" />
+      <point x="89.0" y="76.0" />
+      <point x="134.5" y="76.0" />
+      <point x="-52.25" y="25.5" />
+    </edge>
+    <edge source="ru.stqa.pft.addressbook.Tests.GroupCreationTests" target="ru.stqa.pft.addressbook.Tests.TestBase">
+      <point x="0.0" y="-14.5" />
+      <point x="284.5" y="76.0" />
+      <point x="239.0" y="76.0" />
+      <point x="52.25" y="25.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="251.0" y="183.0" />
+  <SelectedNodes>
+    <node>ru.stqa.pft.addressbook.appmanager.NavigationHelper</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
