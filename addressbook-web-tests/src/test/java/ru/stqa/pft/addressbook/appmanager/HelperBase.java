@@ -17,10 +17,19 @@ public class HelperBase {
     wd.findElement(locator).click();
   }
 
+/*
+Veryfies if form contains some text, if we adding null as parameter
+then we skip this form
+ */
   protected void type(By locator, String text) {
     click(locator);
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(text);
+    if (text != null){
+      String existingText = wd.findElement(locator).getAttribute("value"); // Comparing parameter with existing text in form
+      if (! text.equals(existingText)) {
+        wd.findElement(locator).clear();
+        wd.findElement(locator).sendKeys(text);
+      }
+    }
   }
 
   public boolean isElementPresent(By by) {
