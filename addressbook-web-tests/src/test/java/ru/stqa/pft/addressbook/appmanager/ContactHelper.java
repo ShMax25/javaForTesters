@@ -44,7 +44,7 @@ public class ContactHelper extends HelperBase{
   }
 
   public void initContactModification() {
-    click(By.xpath("//a[@href='edit.php?id=2']"));
+    click(By.xpath("//img[@title='Edit']"));
   }
 
   public void submitContactModification() {
