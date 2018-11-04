@@ -18,10 +18,4 @@ public class NavigationHelper extends HelperBase{
     click(By.linkText("groups"));
   }
 
-  public void initAddNewContact() {
-    if (isElementPresent(By.id("manetable"))){
-      return;
-    }
-    click(By.linkText("add new"));
-  }
 }
