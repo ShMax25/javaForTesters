@@ -68,9 +68,9 @@ public class ContactHelper extends HelperBase{
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void createContact(ContactData contact) {
+  public void createContact(ContactData contact, boolean groupDropbox) {
     initAddNewContact();
-    fillContactForm(contact, true);
+    fillContactForm(contact, groupDropbox);
     submitContactForm();
     returnToHomePage();
   }

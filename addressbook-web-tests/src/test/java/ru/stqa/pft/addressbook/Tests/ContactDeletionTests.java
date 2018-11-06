@@ -9,8 +9,7 @@ public class ContactDeletionTests extends TestBase{
   public void testContactDeletion () {
     app.getNavigationHelper().goToHomePage();
     if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Pupkin", "QA", "Google", "2101 Signal Drive", "Google", "2101 Signal Dr", "65000333", "6509998888", "vpupkin@gmail.com", "test4"));
-      return;
+      app.getContactHelper().createContact(new ContactData("Pupkin", "QA", "Google", "2101 Signal Drive", "Google", "2101 Signal Dr", "65000333", "6509998888", "vpupkin@gmail.com", "test4"), true);
     }
     app.getContactHelper().selectContact();
     app.getContactHelper().deleteSelectedContact();
