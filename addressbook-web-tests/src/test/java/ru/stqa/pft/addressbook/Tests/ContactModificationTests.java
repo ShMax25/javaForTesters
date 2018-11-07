@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.Tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -11,10 +12,14 @@ public class ContactModificationTests extends TestBase {
     if (! app.getContactHelper().isThereAContact()) {
       app.getContactHelper().createContact(new ContactData("Max", "Sma", null , null, null, null, null, null, null, "[none]"), true);
     }
+    int before = app.getContactHelper().getContactsCount();
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("Ilon","Mask","imask", "VP", "Tesla Motors", "2100 Siera Dr", "5235524", "132123123", "imask@gmail.com", null), false);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnToHomePage();
+    int after = app.getContactHelper().getContactsCount();
+
+    Assert.assertEquals(before, after);
   }
 }
 
