@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,10 +83,13 @@ public class ContactHelper extends HelperBase{
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']/td[3]"));
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+
     for (WebElement element : elements) {
-      String name = element.getText();
-      ContactData contact = new ContactData(name, null, null, null, null, null, null );
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+      String name = element.findElement(By.xpath("./td[3]")).getText();
+      String lastName = element.findElement(By.xpath("./td[2]")).getText();
+      ContactData contact = new ContactData(id ,name, lastName, null, null, null, null, null );
       contacts.add(contact);
     }
   return contacts;
