@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private final int id;
+  private int id;
   private final String firstName;
   private final String lastName;
   private final String userName;
@@ -64,6 +64,10 @@ public class ContactData {
 
   public String getGroup() {
     return group;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   @Override
