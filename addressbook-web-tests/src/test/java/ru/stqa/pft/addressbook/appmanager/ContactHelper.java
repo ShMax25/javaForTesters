@@ -82,6 +82,12 @@ public class ContactHelper extends HelperBase{
     returnToHomePage();
   }
 
+  public void delete() {
+    selectContact();
+    deleteSelectedContact();
+    acceptContactDeletion();
+  }
+
   public int getContactsCount() {
    return wd.findElements(By.name("selected[]")).size();
   }
