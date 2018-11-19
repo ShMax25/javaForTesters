@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-  @Test (enabled = false)
+  @Test
   public void testContactModification() {
     if (app.contact().getContactList().size() == 0) {
       app.contact().create(new ContactData("Max", "Sma", null , null, null, null,  "[none]"), true);
@@ -17,10 +17,7 @@ public class ContactModificationTests extends TestBase {
     List<ContactData> before = app.contact().getContactList();
     int index = before.size() - 2;
     ContactData contact = new ContactData(before.get(index).getId(), "John", "Travolta", "JT", "222 jasdjsa", "89498310813", "1323123123", "[none]");
-    app.contact().initContactModification(index);
-    app.contact().modify(contact, false);
-    app.contact().submitContactModification();
-    app.contact().returnToHomePage();
+    app.contact().modify(index, contact);
     List<ContactData> after = app.contact().getContactList();
 
     Assert.assertEquals(before.size(), after.size());

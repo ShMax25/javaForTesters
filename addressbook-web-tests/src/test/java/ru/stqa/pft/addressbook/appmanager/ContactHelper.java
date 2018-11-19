@@ -16,7 +16,7 @@ public class ContactHelper extends HelperBase{
     super(wd);
   }
 
-  public void modify(ContactData contactData, boolean creation) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("lastname"), contactData.getLastName());
     type(By.name("nickname"), contactData.getUserName());
@@ -70,8 +70,15 @@ public class ContactHelper extends HelperBase{
 
   public void create(ContactData contact, boolean groupDropbox) {
     initAddNewContact();
-    modify(contact, groupDropbox);
+    fillContactForm(contact, groupDropbox);
     submitContactForm();
+    returnToHomePage();
+  }
+
+  public void modify(int index, ContactData contact) {
+    initContactModification(index);
+    fillContactForm(contact, false);
+    submitContactModification();
     returnToHomePage();
   }
 
