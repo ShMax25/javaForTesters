@@ -8,16 +8,17 @@ import java.util.List;
 
 public class ContactDeletionTests extends TestBase{
 
-  @Test (enabled = false)
+  @Test
   public void testContactDeletion () {
     app.goTo().goToHomePage();
     if (app.contact().list().size() == 0) {
-      app.contact().create(new ContactData("Alex","Pancho","SanchPAnch", "2113 oojjsa", "989879174", "12313123","[none]"), true);
+      app.contact().create(new ContactData().withFirstName("Alex").withLastName("Last").withMobile("9829734973942").withAddress("Drive road").withGroup("[none]"), true);
     }
     List<ContactData> before = app.contact().list();
     app.contact().delete();
-    List<ContactData> after = app.contact().list();
     app.contact().returnToHomePage();
+    List<ContactData> after = app.contact().list();
+
 
     Assert.assertEquals(after.size(), before.size()-1 );
   }
