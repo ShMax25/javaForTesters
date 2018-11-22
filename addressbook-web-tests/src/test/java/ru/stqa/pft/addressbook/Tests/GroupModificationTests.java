@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class GroupModificationTests extends TestBase{
   @BeforeMethod
@@ -20,23 +21,18 @@ public class GroupModificationTests extends TestBase{
 
   @Test
   public void testGroupModification (){
-    List<GroupData> before = app.group().list();
-    int index = before.size() - 1;
+    Set<GroupData> before = app.group().all();
+    GroupData modifiedGroup = before.iterator().next(); // prisvaivaet znacenie sluciainoi gruppi
     GroupData group = new GroupData()
-            .withId(before.get(index).getId())
-            .withName("test1").withHeader("test2")
+            .withId(modifiedGroup.getId())
+            .withName("test3333").withHeader("test2")
             .withFooter("test3"); // dobavlen id modificirovannoi gruppi
-    app.group().modify(index, group);
-    List<GroupData> after = app.group().list();
+    app.group().modify(group);
+    Set<GroupData> after = app.group().all();
 
-    Assert.assertEquals(before.size(), after.size());
-
-    before.remove(index);
+    Assert.assertEquals(after.size(), before.size());
+    before.remove(modifiedGroup);
     before.add(group);
-
-    Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after); // preobrazuem spisok v mnojestva
 
   }
