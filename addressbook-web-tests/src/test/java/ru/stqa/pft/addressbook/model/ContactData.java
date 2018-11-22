@@ -94,18 +94,19 @@ public class ContactData {
             '}';
   }
 
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(firstName, that.firstName) &&
+    return id == that.id &&
+            Objects.equals(firstName, that.firstName) &&
             Objects.equals(lastName, that.lastName);
   }
 
   @Override
   public int hashCode() {
-    return 0;
+
+    return Objects.hash(id, firstName, lastName);
   }
 }

@@ -22,7 +22,7 @@ public class GroupModificationTests extends TestBase{
     GroupData modifiedGroup = before.iterator().next(); // prisvaivaet znacenie sluciainoi gruppi
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId())
-            .withName("test99").withHeader("test2")
+            .withName("22test99").withHeader("test2")
             .withFooter("test3"); // dobavlen id modificirovannoi gruppi
     app.group().modify(group);
     Set<GroupData> after = app.group().all();
