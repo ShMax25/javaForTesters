@@ -33,9 +33,9 @@ public class GroupModificationTests extends TestBase{
             .withName("22test99").withHeader("test2")
             .withFooter("test3"); // dobavlen id modificirovannoi gruppi
     app.group().modify(group);
+    assertEquals(app.group().count(),before.size());
     Groups after = app.group().all();
 
-    assertEquals(after.size(),before.size());
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
 
   }
