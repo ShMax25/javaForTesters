@@ -83,6 +83,7 @@ public class ContactHelper extends HelperBase{
     initAddNewContact();
     fillContactForm(contact, groupDropbox);
     submitContactForm();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -97,6 +98,7 @@ public class ContactHelper extends HelperBase{
     initContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -109,6 +111,7 @@ public class ContactHelper extends HelperBase{
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContact();
+    contactCache = null;
     acceptContactDeletion();
   }
 
@@ -130,8 +133,13 @@ public class ContactHelper extends HelperBase{
   return contacts;
   }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
 
     for (WebElement element : elements) {
@@ -139,8 +147,8 @@ public class ContactHelper extends HelperBase{
       String name = element.findElement(By.xpath("./td[3]")).getText();
       String lastName = element.findElement(By.xpath("./td[2]")).getText();
       ContactData contact = new ContactData().withId(id).withFirstName(name).withLastName(lastName);
-      contacts.add(contact);
+      contactCache.add(contact);
     }
-    return contacts;
+    return contactCache;
   }
 }
