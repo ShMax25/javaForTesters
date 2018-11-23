@@ -24,6 +24,9 @@ public class ContactHelper extends HelperBase{
     type(By.name("home"), contactData.getHomeNumber());
     type(By.name("mobile"), contactData.getMobile());
     type(By.name("work"), contactData.getWorkNumber());
+    type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail());
+    type(By.name("email3"), contactData.getEmail());
 
 // Checks what test is it, do we need to check if element present or not
     if (creation) {
@@ -143,9 +146,10 @@ public class ContactHelper extends HelperBase{
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
       String name = element.findElement(By.xpath("./td[3]")).getText();
       String lastName = element.findElement(By.xpath("./td[2]")).getText();
-      String [] phones = element.findElement(By.xpath("./td[6]")).getText().split("\n"); // poluciaem vse nomera srazu (no nam nujni oni razdelino), pri poshi splet i RegEx mi rabivaem ih na otdelinie nomera
-      ContactData contact = new ContactData().withId(id).withFirstName(name)
-              .withLastName(lastName).withHomeNumber(phones[0]).withMobile(phones[1]).withWorkNumber(phones[2]);
+      String allPhones = element.findElement(By.xpath("./td[6]")).getText(); // poluciaem vse nomera srazu ne razdelino v vide odnoi stroki
+      String address = element.findElement(By.xpath("./td[4]")).getText();
+      String allEmails = element.findElement(By.xpath("./td[5]")).getText(); // poluciaem vse email srazu v vide odnoi stroki
+      ContactData contact = new ContactData().withId(id).withFirstName(name).withLastName(lastName).withAllPhones(allPhones).withAddress(address).withAllEmails(allEmails);
       contactCache.add(contact);
     }
     return contactCache;
@@ -158,6 +162,10 @@ public class ContactHelper extends HelperBase{
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
+    String email = wd.findElement(By.name("email")).getAttribute("value");
+    String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+    String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
     return new ContactData()
             .withId(contact.getId())
@@ -165,7 +173,10 @@ public class ContactHelper extends HelperBase{
             .withLastName(lastName)
             .withHomeNumber(home)
             .withMobile(mobile)
-            .withWorkNumber(work);
-
+            .withWorkNumber(work)
+            .withAddress(address)
+            .withEmail(email)
+            .withEmail2(email2)
+            .withEmail3(email3);
   }
 }
