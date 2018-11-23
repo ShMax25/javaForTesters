@@ -8,10 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -24,6 +21,7 @@ public class ContactHelper extends HelperBase{
     type(By.name("lastname"), contactData.getLastName());
     type(By.name("nickname"), contactData.getUserName());
     type(By.name("address"), contactData.getAddress());
+    type(By.name("home"), contactData.getHomeNumber());
     type(By.name("mobile"), contactData.getMobile());
     type(By.name("work"), contactData.getWorkNumber());
 
@@ -119,19 +117,19 @@ public class ContactHelper extends HelperBase{
    return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
-
-    for (WebElement element : elements) {
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      String name = element.findElement(By.xpath("./td[3]")).getText();
-      String lastName = element.findElement(By.xpath("./td[2]")).getText();
-      ContactData contact = new ContactData().withId(id).withFirstName(name).withLastName(lastName);
-      contacts.add(contact);
-    }
-  return contacts;
-  }
+//  public List<ContactData> list() {
+//    List<ContactData> contacts = new ArrayList<ContactData>();
+//    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+//
+//    for (WebElement element : elements) {
+//      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+//      String name = element.findElement(By.xpath("./td[3]")).getText();
+//      String lastName = element.findElement(By.xpath("./td[2]")).getText();
+//      ContactData contact = new ContactData().withId(id).withFirstName(name).withLastName(lastName);
+//      contacts.add(contact);
+//    }
+//  return contacts;
+//  }
 
   private Contacts contactCache = null;
 
@@ -141,14 +139,33 @@ public class ContactHelper extends HelperBase{
     }
     contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
-
     for (WebElement element : elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
       String name = element.findElement(By.xpath("./td[3]")).getText();
       String lastName = element.findElement(By.xpath("./td[2]")).getText();
-      ContactData contact = new ContactData().withId(id).withFirstName(name).withLastName(lastName);
+      String [] phones = element.findElement(By.xpath("./td[6]")).getText().split("\n"); // poluciaem vse nomera srazu (no nam nujni oni razdelino), pri poshi splet i RegEx mi rabivaem ih na otdelinie nomera
+      ContactData contact = new ContactData().withId(id).withFirstName(name)
+              .withLastName(lastName).withHomeNumber(phones[0]).withMobile(phones[1]).withWorkNumber(phones[2]);
       contactCache.add(contact);
     }
     return contactCache;
+  }
+
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactData()
+            .withId(contact.getId())
+            .withFirstName(firstName)
+            .withLastName(lastName)
+            .withHomeNumber(home)
+            .withMobile(mobile)
+            .withWorkNumber(work);
+
   }
 }
