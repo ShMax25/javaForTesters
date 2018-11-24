@@ -22,6 +22,7 @@ public class ContactCreationTest extends TestBase {
             .withLastName("Groznii")
             .withUserName("IG")
             .withHomeNumber("27492749234")
+            .withWorkNumber("829473742424")
             .withMobile("23424223")
             .withAddress("2345 Sho dr")
             .withGroup("[none]")
