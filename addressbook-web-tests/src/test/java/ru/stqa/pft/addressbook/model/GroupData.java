@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
@@ -8,10 +9,13 @@ import java.util.Objects;
 public class GroupData {
 
   @XStreamAlias("group")
-  @XStreamOmitField
+  @XStreamOmitField//Xstrean Library annotation shows which parameter to Not use
   private int id = Integer.MAX_VALUE;
+  @Expose//gson Library annotation shows which parameters to use
   private String name;
+  @Expose
   private String header;
+  @Expose
   private String footer;
 
 
