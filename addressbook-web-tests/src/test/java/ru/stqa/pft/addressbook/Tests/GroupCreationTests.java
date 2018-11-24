@@ -8,9 +8,7 @@ import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,12 +16,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
 
+  @DataProvider
+  public Iterator<Object[]> validGroups(){
+    List<Object[]> list = new ArrayList<Object[]>();
+    list.add(new Object[] {new GroupData().withName("test1").withHeader("header2").withFooter("foter3")});
+    list.add(new Object[] {new GroupData().withName("test2").withHeader("header2").withFooter("foter3")});
 
-  @Test
-  public void testGroupCreation() throws Exception {
+    return list.iterator();
+  }
+
+  @Test (dataProvider = "validGroups")
+  public void testGroupCreation(GroupData group) throws Exception {
     app.goTo().groupPage();
     Groups before = app.group().all();
-    GroupData group = new GroupData().withName("test1");
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size()+1));
     Groups after = app.group().all();
