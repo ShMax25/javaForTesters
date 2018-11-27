@@ -54,18 +54,18 @@ public class GroupDataGenerator {
   private void saveAsJson(List<GroupData> groups, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(groups);
-    Writer writer =  new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    try (Writer writer =  new FileWriter(file)){ // Construction try helps close Writer
+       writer.write(json);
+    }
   }
 
   private void saveAsXml(List<GroupData> groups, File file) throws IOException {
     XStream xstream = new XStream();
     xstream.processAnnotations(GroupData.class); // reads annotations from GroupData, we change by it tag name to 'group'
     String xml = xstream.toXML(groups);
-    Writer writer =  new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try (Writer writer =  new FileWriter(file)){
+      writer.write(xml);
+    }
   }
 
   /*
