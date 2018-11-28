@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.Tests.GroupModificationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-27T07:47:21" hostname="msmuli-mac.local" time="2.174">
+  <properties/>
+  <testcase name="testGroupModification" classname="ru.stqa.pft.addressbook.Tests.GroupModificationTests" time="2.174"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
