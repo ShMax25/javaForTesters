@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.pft.addressbook.Tests.ContactCreationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-11-28T06:52:45" hostname="msmuli-mac.local" time="18.325">
+<testsuite name="ru.stqa.pft.addressbook.Tests.ContactCreationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-11-30T06:19:38" hostname="msmuli-mac.local" time="22.44">
   <properties/>
-  <testcase name="testNewContactCreation[0](ContactData{id=2147483647, firstName='Richard 0', lastName='Lion 0'})" classname="ru.stqa.pft.addressbook.Tests.ContactCreationTest" time="7.19"/>
-  <testcase name="testNewContactCreation[1](ContactData{id=2147483647, firstName='Richard 1', lastName='Lion 1'})" classname="ru.stqa.pft.addressbook.Tests.ContactCreationTest" time="5.438"/>
-  <testcase name="testNewContactCreation[2](ContactData{id=2147483647, firstName='Richard 2', lastName='Lion 2'})" classname="ru.stqa.pft.addressbook.Tests.ContactCreationTest" time="5.696"/>
+  <testcase name="testNewContactCreation[0](ContactData{id=2147483647, firstName='Richard 0', lastName='Lion 0'})" classname="ru.stqa.pft.addressbook.Tests.ContactCreationTest" time="9.016"/>
+  <testcase name="testNewContactCreation[1](ContactData{id=2147483647, firstName='Richard 1', lastName='Lion 1'})" classname="ru.stqa.pft.addressbook.Tests.ContactCreationTest" time="6.53"/>
+  <testcase name="testNewContactCreation[2](ContactData{id=2147483647, firstName='Richard 2', lastName='Lion 2'})" classname="ru.stqa.pft.addressbook.Tests.ContactCreationTest" time="6.892"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
+  <system-err><![CDATA[console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+]]></system-err>
 </testsuite>

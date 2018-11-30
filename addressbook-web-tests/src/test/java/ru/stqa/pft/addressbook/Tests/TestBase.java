@@ -9,10 +9,10 @@ import ru.stqa.pft.addressbook.appmanager.ApplicationManager;
 
 public class TestBase {
 
-  protected static final ApplicationManager app = new ApplicationManager(BrowserType.FIREFOX);
+  protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX)); // Now we can choose in which browser to run Tests, in settings we should specify browser if no it will use FF by default
+
 /*
 Suite daet vozmojnosti ispolizovati 1 brauzer dlia vseh testov
-a
  */
   @BeforeSuite
   public void setUp() throws Exception {

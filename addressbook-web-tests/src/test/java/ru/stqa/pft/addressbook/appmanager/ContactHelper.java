@@ -153,7 +153,7 @@ public class ContactHelper extends HelperBase{
       ContactData contact = new ContactData().withId(id).withFirstName(name).withLastName(lastName).withAllPhones(allPhones).withAddress(address).withAllEmails(allEmails);
       contactCache.add(contact);
     }
-    return contactCache;
+    return new Contacts(contactCache);
   }
 
   public ContactData infoFromEditForm(ContactData contact) {

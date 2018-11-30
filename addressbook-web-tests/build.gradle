@@ -19,10 +19,25 @@ task testGroups (type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-group.xml'
     }
+    if (project.hasProperty('browser')) { // checks if selected browser in console
+        systemProperty 'browser', "${browser}"
+        // now we could select browser in console ./gradlew -Pbrowser=chrome testContacts
+    }
+    if (project.hasProperty('target')) { // checks if selected browser in console
+        systemProperty 'target', "${target}"
+        // now we could select browser in console ./gradlew -Pbrowser=chrome testContacts
+    }
 }
 
 task testContacts (type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-contact.xml'
+    }
+    if (project.hasProperty('browser')) { // checks if selected browser in console
+        systemProperty 'browser', "${browser}"
+        // now we could select browser in console ./gradlew -Pbrowser=chrome testContacts
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
     }
 }
